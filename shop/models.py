@@ -1,10 +1,10 @@
 from django.db import models
 
 
-class HeroPhoto(models.Model):
-    slogan = models.CharField(max_length=200)
+class HeroProduct(models.Model):
+    name = models.CharField(max_length=200)
     text = models.CharField(max_length=500)
-    photo = models.ImageField(upload_to='media/hero',
+    image = models.ImageField(upload_to='hero',
                               blank=True)
     slug = models.SlugField(max_length=200, db_index=True)
     available = models.BooleanField(default=True)
@@ -12,7 +12,7 @@ class HeroPhoto(models.Model):
 
 class CollectionProduct(models.Model):
     name = models.CharField(max_length=50)
-    photo = models.ImageField(upload_to='media/collection',
+    image = models.ImageField(upload_to='collection',
                               blank=True)
     slug = models.SlugField(max_length=200, db_index=True)
     available = models.BooleanField(default=True)
@@ -23,23 +23,27 @@ class FeaturedProduct(models.Model):
     name = models.CharField(max_length=50)
     product_name = models.CharField(max_length=50)
     text = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='feature',
+                              blank=True)
     available = models.BooleanField(default=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
 
 
 class SaleProduct(models.Model):
     name = models.CharField(max_length=50)
-    sale_date = models.DateField()
-    sale_detail = models.CharField(max_length=500)
+    date = models.DateField()
+    detail = models.CharField(max_length=500)
     slug = models.SlugField(max_length=200, db_index=True)
-    sale_image = models.ImageField(upload_to='media/sale',
+    image = models.ImageField(upload_to='sale',
                               blank=True)
-
+    available = models.BooleanField(default=True)
 
 
 class PromoProduct(models.Model):
     name = models.CharField(max_length=50)
-    promo_start_date = models.DateField()
-    promo_end_date = models.DateField()
-    promo_image = models.ImageField(upload_to='media/promo',
+    start_date = models.DateField()
+    end_date = models.DateField()
+    image = models.ImageField(upload_to='promo',
                               blank=True)
+    available = models.BooleanField(default=True)

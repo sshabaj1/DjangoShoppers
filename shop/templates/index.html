@@ -95,14 +95,14 @@
         </div>
       </nav>
     </header>
-
-    <div class="site-blocks-cover" style="background-image: url({% static 'images/hero_1.jpg' %});" data-aos="fade">
+    
+    <div class="site-blocks-cover" style="background-image: url({{ hero.image.url }});" data-aos="fade">
       <div class="container">
         <div class="row align-items-start align-items-md-center justify-content-end">
           <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-            <h1 class="mb-2">Finding Your Perfect Shoes</h1>
+            <h1 class="mb-2">{{ hero.name }}</h1>
             <div class="intro-text text-center text-md-left">
-              <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla. </p>
+              <p class="mb-4">{{ hero.text }} </p>
               <p>
                 <a href="#" class="btn btn-sm btn-primary">Shop Now</a>
               </p>
@@ -149,18 +149,20 @@
     <div class="site-section site-blocks-2">
       <div class="container">
         <div class="row">
+          {% for collection in collections %}
           <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
             <a class="block-2-item" href="#">
               <figure class="image">
-                <img src="{% static 'images/women.jpg' %}" alt="" class="img-fluid">
+                <img src="{{ collection.image.url }}" alt="" class="img-fluid">
               </figure>
               <div class="text">
                 <span class="text-uppercase">Collections</span>
-                <h3>Women</h3>
+                <h3>{{ collection.name }}</h3>
               </div>
             </a>
           </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+          {% endfor %}
+          <!-- <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
             <a class="block-2-item" href="#">
               <figure class="image">
                 <img src="{% static 'images/children.jpg' %}" alt="" class="img-fluid">
@@ -181,7 +183,7 @@
                 <h3>Men</h3>
               </div>
             </a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -196,19 +198,21 @@
         <div class="row">
           <div class="col-md-12">
             <div class="nonloop-block-3 owl-carousel">
+              {% for feature in featured_list %}
               <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
-                    <img src="{% static 'images/cloth_1.jpg' %}" alt="Image placeholder" class="img-fluid">
+                    <img src="{{ feature.image.url }}" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">Tank Top</a></h3>
-                    <p class="mb-0">Finding perfect t-shirt</p>
+                    <h3><a href="#">{{ feature.product_name }}</a></h3>
+                    <p class="mb-0">{{ feature.text }}</p>
                     <p class="text-primary font-weight-bold">$50</p>
                   </div>
                 </div>
               </div>
-              <div class="item">
+              {% endfor %}
+              <!-- <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
                     <img src="{% static 'images/shoe_1.jpg' %}" alt="Image placeholder" class="img-fluid">
@@ -231,8 +235,8 @@
                     <p class="text-primary font-weight-bold">$50</p>
                   </div>
                 </div>
-              </div>
-              <div class="item">
+              </div> -->
+              <!-- <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
                     <img src="{% static 'images/cloth_3.jpg' %}" alt="Image placeholder" class="img-fluid">
@@ -243,8 +247,8 @@
                     <p class="text-primary font-weight-bold">$50</p>
                   </div>
                 </div>
-              </div>
-              <div class="item">
+              </div> -->
+              <!-- <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
                     <img src="{% static 'images/shoe_1.jpg' %}" alt="Image placeholder" class="img-fluid">
@@ -255,7 +259,7 @@
                     <p class="text-primary font-weight-bold">$50</p>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -271,12 +275,12 @@
         </div>
         <div class="row align-items-center">
           <div class="col-md-12 col-lg-7 mb-5">
-            <a href="#"><img src="{% static 'images/blog_1.jpg' %}" alt="Image placeholder" class="img-fluid rounded"></a>
+            <a href="#"><img src="{{ sale.image.url }}" alt="Image placeholder" class="img-fluid rounded"></a>
           </div>
           <div class="col-md-12 col-lg-5 text-center pl-md-5">
-            <h2><a href="#">50% less in all items</a></h2>
-            <p class="post-meta mb-4">By <a href="#">Carl Smith</a> <span class="block-8-sep">&bullet;</span> September 3, 2018</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium facere corporis ipsum animi deleniti fugiat. Ex, veniam?</p>
+            <h2><a href="#">{{ sale.name }}</a></h2>
+            <p class="post-meta mb-4">By <a href="#">Carl Smith</a> <span class="block-8-sep">&bullet;</span>{{ sale.date }}</p>
+            <p>{{ sale.detail }}</p>
             <p><a href="#" class="btn btn-primary btn-sm">Shop Now</a></p>
           </div>
         </div>
@@ -318,9 +322,9 @@
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
             <h3 class="footer-heading mb-4">Promo</h3>
             <a href="#" class="block-6">
-              <img src="{% static 'images/hero_1.jpg' %}" alt="Image placeholder" class="img-fluid rounded mb-4">
-              <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-              <p>Promo from  nuary 15 &mdash; 25, 2019</p>
+              <img src="{{ promo.image.url }}" alt="Image placeholder" class="img-fluid rounded mb-4">
+              <h3 class="font-weight-light  mb-0">{{ promo.name }}</h3>
+              <p>Promo from {{ promo.start_date }} &mdash; {{ promo.end_date }}</p>
             </a>
           </div>
           <div class="col-md-6 col-lg-3">

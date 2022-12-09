@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import LandingPageView
+from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'shop'
 
 urlpatterns = [
-    path('', LandingPageView.as_view(), name='landing-page')
-]
+    path('', views.landind_page_view, name='landing-page')
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
