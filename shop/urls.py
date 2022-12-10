@@ -7,4 +7,5 @@ app_name = 'shop'
 
 urlpatterns = [
     path('', views.landind_page_view, name='landing-page'),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

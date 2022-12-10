@@ -58,74 +58,20 @@
       </div>
     </div>
 
-    <div class="site-section site-blocks-2">
-      <div class="container">
-        <div class="row">
-          {% for collection in collections %}
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-            <a class="block-2-item" href="#">
-              <figure class="image">
-                <img src="{{ collection.image.url }}" alt="" class="img-fluid">
-              </figure>
-              <div class="text">
-                <span class="text-uppercase">Collections</span>
-                <h3>{{ collection.name }}</h3>
-              </div>
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
+    {% block collection %}
+      {% include "components/collection.html" %}
+    {% endblock %}
 
-    <div class="site-section block-3 site-blocks-2 bg-light">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-7 site-section-heading text-center pt-4">
-            <h2>Featured Products</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="nonloop-block-3 owl-carousel">
-              {% for feature in featured_list %}
-              <div class="item">
-                <div class="block-4 text-center">
-                  <figure class="block-4-image">
-                    <img src="{{ feature.image.url }}" alt="Image placeholder" class="img-fluid">
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="#">{{ feature.product_name }}</a></h3>
-                    <p class="mb-0">{{ feature.text }}</p>
-                    <p class="text-primary font-weight-bold">$50</p>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    {% block featured %}
+      {% include "components/featured-products.html" %}
+    {% endblock %}
 
-    <div class="site-section block-8">
-      <div class="container">
-        <div class="row justify-content-center  mb-5">
-          <div class="col-md-7 site-section-heading text-center pt-4">
-            <h2>Big Sale!</h2>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-12 col-lg-7 mb-5">
-            <a href="#"><img src="{{ sale.image.url }}" alt="Image placeholder" class="img-fluid rounded"></a>
-          </div>
-          <div class="col-md-12 col-lg-5 text-center pl-md-5">
-            <h2><a href="#">{{ sale.name }}</a></h2>
-            <p class="post-meta mb-4">By <a href="#">Carl Smith</a> <span class="block-8-sep">&bullet;</span>{{ sale.date }}</p>
-            <p>{{ sale.detail }}</p>
-            <p><a href="#" class="btn btn-primary btn-sm">Shop Now</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    {% block sale %}
+      {% include "components/sale.html" %}
+    {% endblock %}
+
+
+
     {% endblock %}
