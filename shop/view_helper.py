@@ -1,5 +1,5 @@
 from .models import HeroProduct, CollectionProduct , FeaturedProduct, SaleProduct, PromoProduct
-
+from about.models import AboutComponent
 
 class ViewHelper():
 
@@ -50,5 +50,11 @@ class ViewHelper():
         promo_product_list = PromoProduct.objects.all()
         promo_product = ViewHelper.filter_available_product(promo_product_list)
         return promo_product
+
+
+    def return_about_components():
+        about_components_list = AboutComponent.objects.all()
+        about_components_available = ViewHelper.filter_available_list(about_components_list)
+        return about_components_available
 
     

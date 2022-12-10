@@ -3,8 +3,7 @@
 {% block title %} About {% endblock %}
 {% block content %}
     
-    
-    <!-- header -->
+
 
     <div class="bg-light py-3">
       <div class="container">
@@ -13,34 +12,51 @@
         </div>
       </div>
     </div>  
+    
+    {% if about_components %}
 
-    <div class="site-section border-bottom" data-aos="fade">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-6">
-            <div class="block-16">
-              <figure>
-                
-                <img src="{% static 'images/blog_1.jpg' %}" alt="Image placeholder" class="img-fluid rounded">
-                <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo"><span class="ion-md-play"></span></a>
+      {% for about_component in about_components %}
 
-              </figure>
+      <div class="site-section border-bottom" data-aos="fade">
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-md-6">
+              <div class="block-16">
+                <figure>
+
+                  {% if about_component.video %}
+
+                  <video width="500px" height="500px" controls>
+                    <source src="{{ about_component.video.url }}" type="video/mp4">
+                  </video>
+
+                  {% else %}
+
+                    {% if about_component.image %}
+
+                      <img src="{{ about_component.image.url }}" alt="Image placeholder" class="img-fluid rounded">
+                    
+                    {% endif %}
+                  {% endif %}
+
+                </figure>
+              </div>
             </div>
-          </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-5">
-            
-            
-            <div class="site-section-heading pt-3 mb-4">
-              <h2 class="text-black">How We Started</h2>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              
+              
+              <div class="site-section-heading pt-3 mb-4">
+                <h2 class="text-black">{{ about_component.name }}</h2>
+              </div>
+              <p>{{ about_component.description }}</p>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius repellat, dicta at laboriosam, nemo exercitationem itaque eveniet architecto cumque, deleniti commodi molestias repellendus quos sequi hic fugiat asperiores illum. Atque, in, fuga excepturi corrupti error corporis aliquam unde nostrum quas.</p>
-            <p>Accusantium dolor ratione maiores est deleniti nihil? Dignissimos est, sunt nulla illum autem in, quibusdam cumque recusandae, laudantium minima repellendus.</p>
-            
           </div>
         </div>
       </div>
-    </div>
+
+      {% endfor %}
+    {% endif %}
 
     {% block team %}
       {% include "components/team.html" %}
