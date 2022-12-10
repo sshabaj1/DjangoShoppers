@@ -8,6 +8,8 @@ def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
     products = Product.objects.all()
+    promo_product_list = ViewHelper.return_promo_product()
+    collection_product_list = ViewHelper.return_collection_products()
     if category_slug:
         category = get_object_or_404(Category, slug = category_slug)
         products = products.filter(category=category)
@@ -15,7 +17,9 @@ def product_list(request, category_slug=None):
                 'product/shop.html',
                 {'category': category,
                 'categories': categories,
-                'products': products})
+                'products': products,
+                'promo': promo_product_list,
+                'collections':collection_product_list})
 
 
 
